@@ -13,20 +13,18 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      /* Kinetic Minds brand palette */
       --bg:     #F1EEE7;   /* Soft Warm Gray */
       --ink:    #1B2440;   /* Dark Navy */
-      --muted:  #5E6577;   /* Navy at lower contrast */
-      --teal:   #1EC6B1;   /* Electric Teal — primary */
-      --coral:  #F08C6A;   /* Soft Coral — warm accent */
+      --muted:  #5E6577;
+      --teal:   #1EC6B1;   /* Electric Teal */
+      --coral:  #F08C6A;   /* Soft Coral */
       --rule:   #E2DDD0;
       --card:   #FFFFFF;
-
-      --font: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font:   "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
     }
 
     * { box-sizing: border-box; }
@@ -43,80 +41,103 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
+    body { overflow-x: hidden; }
 
-    .wrap {
-      max-width: 680px;
+    .page {
+      max-width: 720px;
       margin: 0 auto;
       padding: 3rem 1.5rem 5rem;
+      text-align: center;
+      position: relative;
     }
-
     @media (min-width: 720px) {
-      .wrap { padding: 5.5rem 2rem 7rem; }
+      .page { padding: 5rem 2rem 7rem; }
       html, body { font-size: 18px; }
     }
 
-    /* Logo wordmark — when the real logo image is ready, replace the
-       <span class="logo"> in the body with:
-         <img src="kinetic-minds-logo.svg" alt="Kinetic Minds" class="logo-img">
-       and the .logo-img rule below will style it. */
+    /* Decorative SVGs */
+    .deco {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero { position: relative; padding: 1.5rem 0 1.5rem; }
+    .deco-hero-tl { top: -2rem; left: -4rem; width: 200px; height: 200px; }
+    .deco-hero-tr { top: -1rem; right: -2rem; width: 140px; height: 140px; }
+
+    .celebration { position: relative; margin: 3rem 0; padding: 2.5rem 0; }
+    .deco-celeb-left { top: 50%; left: -4.5rem; width: 180px; height: 180px; transform: translateY(-50%); }
+
+    .signoff { position: relative; margin-top: 3.5rem; padding-top: 3rem; padding-bottom: 1rem; border-top: 1px solid var(--rule); }
+    .deco-sign-br { bottom: -2rem; right: -3rem; width: 220px; height: 220px; }
+    .deco-sign-bl { bottom: -1rem; left: -3rem; width: 150px; height: 150px; }
+
+    @media (max-width: 720px) {
+      .deco-hero-tl { width: 120px; height: 120px; top: -1rem; left: -1.5rem; }
+      .deco-hero-tr { width: 90px; height: 90px; top: -0.5rem; right: -0.5rem; }
+      .deco-celeb-left { display: none; }
+      .deco-sign-br { width: 150px; height: 150px; bottom: -1rem; right: -1.5rem; }
+      .deco-sign-bl { width: 100px; height: 100px; bottom: -0.5rem; left: -1.5rem; }
+    }
+
+    /* Logo wordmark */
     .logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
-      margin: 0 0 3rem;
+      display: inline-block;
+      margin: 0 0 2rem;
       font-weight: 700;
-      font-size: 1.35rem;
+      font-size: 1.2rem;
       letter-spacing: -0.01em;
       color: var(--teal);
-    }
-    .logo .spark-mark {
-      display: inline-block;
-      width: 1.5rem;
-      height: 1.5rem;
-      flex-shrink: 0;
-    }
-    .logo-img {
-      display: block;
-      max-width: 220px;
-      height: auto;
-      margin: 0 0 3rem;
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
-      font-size: clamp(2.4rem, 7vw, 3.6rem);
+      font-size: clamp(2.5rem, 7.2vw, 3.8rem);
       line-height: 1.05;
       letter-spacing: -0.025em;
-      margin: 0 0 1.25rem;
+      margin: 0 auto 1.5rem;
       font-weight: 700;
-      color: var(--ink);
+      max-width: 14ch;
+      position: relative;
+      z-index: 1;
     }
-    h1 .spark { color: var(--coral); }
+    h1 em {
+      color: var(--coral);
+      font-style: italic;
+      font-weight: 700;
+    }
 
     .lede {
       font-size: 1.13rem;
       color: var(--muted);
-      margin: 0 0 3rem;
-      max-width: 38em;
-      font-weight: 400;
+      margin: 0 auto 3rem;
+      max-width: 34em;
+      position: relative;
+      z-index: 1;
     }
 
     h2 {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       letter-spacing: -0.01em;
-      margin: 3.25rem 0 1.25rem;
-      font-weight: 600;
-      color: var(--ink);
+      margin: 3rem auto 1.25rem;
+      font-weight: 700;
     }
 
-    p { margin: 0 0 1.25rem; }
-    strong { color: var(--ink); font-weight: 600; }
+    p { margin: 0 auto 1.25rem; max-width: 36em; position: relative; z-index: 1; }
+    em.coral { color: var(--coral); font-weight: 700; font-style: italic; }
 
     .ask {
       background: var(--card);
       border: 1px solid var(--rule);
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 1.5rem 1.75rem;
-      margin: 2rem 0 2.5rem;
+      margin: 2rem auto 2.5rem;
+      max-width: 32em;
+      text-align: left;
+      position: relative;
+      z-index: 1;
     }
     .ask .eyebrow {
       font-size: 0.72rem;
@@ -124,34 +145,31 @@
       letter-spacing: 0.16em;
       color: var(--teal);
       margin: 0 0 0.9rem;
-      font-weight: 600;
+      font-weight: 700;
+      max-width: none;
     }
-    .ask ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      font-size: 1.04rem;
-    }
+    .ask ul { list-style: none; padding: 0; margin: 0; font-size: 1.04rem; }
     .ask ul li {
       padding: 0.55rem 0;
       border-top: 1px solid var(--rule);
     }
-    .ask ul li:first-child {
-      border-top: none;
-      padding-top: 0;
-    }
+    .ask ul li:first-child { border-top: none; padding-top: 0; }
 
-    ul.built {
+    ul.built-list {
       list-style: none;
       padding: 0;
-      margin: 1.25rem 0 2rem;
+      margin: 1.5rem auto 2rem;
+      max-width: 32em;
+      text-align: left;
+      position: relative;
+      z-index: 1;
     }
-    ul.built li {
+    ul.built-list li {
       padding: 0.7rem 0 0.7rem 1.6rem;
       position: relative;
       border-bottom: 1px solid var(--rule);
     }
-    ul.built li::before {
+    ul.built-list li::before {
       content: "";
       position: absolute;
       left: 0;
@@ -161,63 +179,60 @@
       background: var(--teal);
       border-radius: 50%;
     }
-    ul.built li:last-child { border-bottom: none; }
+    ul.built-list li:last-child { border-bottom: none; }
 
     .stat {
-      text-align: center;
-      margin: 3.5rem 0 2.5rem;
-      padding: 2.25rem 1.5rem;
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
+      margin: 0 auto;
+      max-width: 32em;
+      position: relative;
+      z-index: 1;
     }
     .stat .lead-in {
       font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: var(--teal);
-      font-weight: 600;
-      margin: 0 0 0.5rem;
+      font-weight: 700;
+      margin: 0 0 0.75rem;
     }
     .stat .number {
-      font-size: clamp(5rem, 19vw, 7.5rem);
+      font-size: clamp(5.5rem, 22vw, 8.5rem);
       line-height: 1;
       color: var(--coral);
       font-weight: 700;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.05em;
       display: block;
     }
     .stat .label {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       color: var(--ink);
       margin-top: 0.5rem;
       display: block;
-      font-weight: 500;
+      font-weight: 600;
     }
     .stat .note {
       color: var(--muted);
       font-size: 1rem;
-      max-width: 32em;
+      max-width: 28em;
       margin: 1.1rem auto 0;
     }
 
     .kicker {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       line-height: 1.4;
       color: var(--ink);
-      margin: 0 0 2rem;
-      text-align: center;
-      font-weight: 500;
+      margin: 2rem auto 2rem;
+      font-weight: 700;
+      font-style: italic;
+      max-width: 26em;
+      position: relative;
+      z-index: 1;
     }
 
-    .signoff {
-      margin-top: 3.5rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--rule);
-    }
-    .signoff p { margin-bottom: 0.75rem; }
+    .signoff p { margin-bottom: 0.85rem; max-width: 30em; margin-left: auto; margin-right: auto; }
     .signoff .name {
-      font-size: 1.1rem;
-      font-weight: 600;
+      font-size: 1.15rem;
+      font-weight: 700;
       color: var(--teal);
       margin-top: 1.5rem;
       margin-bottom: 0.25rem;
@@ -225,71 +240,102 @@
     .signoff .meta {
       color: var(--muted);
       font-size: 0.92rem;
-      margin: 0;
     }
 
     ::selection { background: var(--teal); color: var(--bg); }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <!--
-      Logo wordmark renders inline below using brand colors. When you have
-      the real Kinetic Minds logo file, replace this <span> with:
-        <img src="kinetic-minds-logo.svg" alt="Kinetic Minds" class="logo-img">
-      and save the file next to index.html.
-    -->
-    <span class="logo">
-      <svg class="spark-mark" viewBox="0 0 24 24" aria-hidden="true" fill="none">
-        <path d="M12 2 L13.2 7.5 L18.5 5.8 L15 10 L20.5 12 L15 14 L18.5 18.2 L13.2 16.5 L12 22 L10.8 16.5 L5.5 18.2 L9 14 L3.5 12 L9 10 L5.5 5.8 L10.8 7.5 Z" fill="#F08C6A"/>
+  <main class="page">
+
+    <header class="hero">
+      <!-- Top-left teal hook curve -->
+      <svg class="deco deco-hero-tl" viewBox="0 0 200 200" aria-hidden="true">
+        <path d="M 35,-20 Q 35,160 230,165" stroke="#1EC6B1" stroke-width="42" fill="none" stroke-linecap="round"/>
       </svg>
-      Kinetic Minds
-    </span>
+      <!-- Top-right sparkles -->
+      <svg class="deco deco-hero-tr" viewBox="0 0 140 140" aria-hidden="true">
+        <path d="M 38,22 L 42,36 L 56,40 L 42,44 L 38,58 L 34,44 L 20,40 L 34,36 Z" fill="#F08C6A"/>
+        <path d="M 92,58 L 95,68 L 105,71 L 95,74 L 92,84 L 89,74 L 79,71 L 89,68 Z" fill="#F08C6A"/>
+        <path d="M 64,96 L 66,103 L 73,105 L 66,107 L 64,114 L 62,107 L 55,105 L 62,103 Z" fill="#1EC6B1"/>
+      </svg>
 
-    <h1>Look what we <span class="spark">built.</span></h1>
+      <!--
+        Logo wordmark in brand teal. To swap in the real Kinetic Minds logo image,
+        save it as `kinetic-minds-logo.svg` (or .png) next to this file and replace
+        the <span class="logo"> below with:
+          <img src="kinetic-minds-logo.svg" alt="Kinetic Minds" style="max-width:220px;height:auto;display:inline-block;margin:0 0 2rem;position:relative;z-index:1;">
+      -->
+      <span class="logo">Kinetic Minds</span>
 
-    <p class="lede">Kinetic Minds &mdash; a creative tech studio for kids in Montclair, NJ &mdash; closed its doors after our final classes on Saturday, May 16, 2026. Before we go, here&rsquo;s what this community made together.</p>
+      <h1>Look what we <em>built.</em></h1>
 
-    <p>Six months ago, we asked Montclair for a community fundraiser to pilot one coding cohort. The plan was small, specific, and a little nervous.</p>
+      <p class="lede">Kinetic Minds &mdash; a creative tech studio for kids in Montclair, NJ &mdash; closed its doors after our final classes on Saturday, May 16, 2026. Before we go, here&rsquo;s what this community made together.</p>
+    </header>
 
-    <section class="ask" aria-label="The original ask">
-      <p class="eyebrow">The original ask</p>
-      <ul>
-        <li>$3,750 community fundraiser</li>
-        <li>One six-week pilot cohort</li>
-        <li>Eight kids in Montclair</li>
-        <li>Up to two need-based scholarship seats, if the math worked</li>
+    <section class="story">
+      <p>Six months ago, we asked Montclair for a community fundraiser to pilot one coding cohort. The plan was small, specific, and a little nervous.</p>
+
+      <div class="ask" aria-label="The original ask">
+        <p class="eyebrow">The original ask</p>
+        <ul>
+          <li>$3,750 community fundraiser</li>
+          <li>One six-week pilot cohort</li>
+          <li>Eight kids in Montclair</li>
+          <li>Up to two need-based scholarship seats, if the math worked</li>
+        </ul>
+      </div>
+
+      <p>One pilot. Eight kids. Two sponsored seats. That was the plan.</p>
+
+      <p>In six months, together, we built something <em class="coral">so much bigger.</em></p>
+    </section>
+
+    <section class="what-we-built">
+      <h2>What we built together</h2>
+      <ul class="built-list">
+        <li>Recurring weekend classes families came back to</li>
+        <li>LEGO robotics, Sphero, coding, and creative builds</li>
+        <li>Birthday parties parents requested by name</li>
+        <li>A real team, paid through real payroll</li>
+        <li>Curriculum, observational assessments, and kit systems</li>
+        <li>Real conversations with schools and Girl Scout troops about what came next</li>
       </ul>
     </section>
 
-    <p>One pilot. Eight kids. Two sponsored seats. That was the plan.</p>
+    <section class="celebration">
+      <!-- Coral organic blob on the left -->
+      <svg class="deco deco-celeb-left" viewBox="0 0 200 200" aria-hidden="true">
+        <path d="M 105,18 C 165,28 198,80 175,140 C 152,200 75,205 30,170 C -15,135 5,75 25,42 C 48,18 78,12 105,18 Z" fill="#F08C6A"/>
+      </svg>
 
-    <p>In six months, together, we built something so much bigger.</p>
-
-    <h2>What we built together</h2>
-    <ul class="built">
-      <li>Recurring weekend classes families came back to</li>
-      <li>LEGO robotics, Sphero, coding, and creative builds</li>
-      <li>Birthday parties parents requested by name</li>
-      <li>A real team, paid through real payroll</li>
-      <li>Curriculum, observational assessments, and kit systems</li>
-      <li>Real conversations with schools and Girl Scout troops about what came next</li>
-    </ul>
-
-    <section class="stat" aria-label="Headline outcome">
-      <p class="lead-in">And the most important part</p>
-      <span class="number">30%</span>
-      <span class="label">of seats were sponsored.</span>
-      <p class="note">We didn&rsquo;t just remove barriers to access. We exceeded our own goal for it.</p>
+      <div class="stat" aria-label="Headline outcome">
+        <p class="lead-in">And the most important part</p>
+        <span class="number">30%</span>
+        <span class="label">of seats were sponsored.</span>
+        <p class="note">We didn&rsquo;t just remove barriers to access. We exceeded our own goal for it.</p>
+      </div>
     </section>
 
     <p class="kicker">That doesn&rsquo;t happen without you.</p>
 
-    <div class="signoff">
+    <footer class="signoff">
+      <!-- Teal concentric arcs in the bottom-right -->
+      <svg class="deco deco-sign-br" viewBox="0 0 220 220" aria-hidden="true">
+        <path d="M 140,220 A 80,80 0 0 1 220,140" stroke="#1EC6B1" stroke-width="14" fill="none" stroke-linecap="round"/>
+        <path d="M 110,220 A 110,110 0 0 1 220,110" stroke="#1EC6B1" stroke-width="14" fill="none" stroke-linecap="round"/>
+        <path d="M 80,220 A 140,140 0 0 1 220,80" stroke="#1EC6B1" stroke-width="14" fill="none" stroke-linecap="round"/>
+      </svg>
+      <!-- Coral blob in the bottom-left -->
+      <svg class="deco deco-sign-bl" viewBox="0 0 150 150" aria-hidden="true">
+        <path d="M 80,8 C 125,18 150,55 130,105 C 110,150 45,150 18,125 C -8,100 8,55 25,28 C 40,12 60,8 80,8 Z" fill="#F08C6A"/>
+      </svg>
+
       <p>Thank you for trusting us with your kids. They are the reason any of this mattered.</p>
       <p class="name">Kinetic Minds</p>
       <p class="meta">Montclair, NJ &middot; 2025&ndash;2026</p>
-    </div>
+    </footer>
+
   </main>
 </body>
 </html>
